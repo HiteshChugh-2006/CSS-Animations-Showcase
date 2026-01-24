@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Interactive Admin Dashboard</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <div class="dashboard">
+    <header class="header">
+      <div class="header-left">
+        <h2>Admin Dashboard</h2>
+        <p id="clock">00:00:00</p>
+      </div>
+
+      <div class="header-right">
+        <input type="text" id="search" placeholder="Search cards..." />
+        <button class="icon-btn" id="notifyBtn" title="Notifications">
+          🔔 <span id="notifyCount">3</span>
+        </button>
+        <button class="icon-btn" onclick="toggleTheme()" id="themeBtn" title="Theme">
+          🌙
+        </button>
+      </div>
+    </header>
+
+    <nav class="sidebar">
+      <h3>Navigation</h3>
+      <button class="nav-btn active" onclick="openPage('dashboard', this)">📊 Dashboard</button>
+      <button class="nav-btn" onclick="openPage('reports', this)">📄 Reports</button>
+      <button class="nav-btn" onclick="openPage('users', this)">👥 Users</button>
+      <button class="nav-btn" onclick="openPage('settings', this)">⚙️ Settings</button>
+      <hr />
+      <button class="nav-btn logout" onclick="logout()">🚪 Logout</button>
+    </nav>
+
+    <main class="main">
+      <section id="dashboard" class="page active-page">
+        <h2 class="page-title">Overview</h2>
+
+        <div class="cards">
+          <div class="card" onclick="showDetails('Analytics')">📈 Analytics</div>
+          <div class="card" onclick="showDetails('Users')">👤 Users</div>
+          <div class="card" onclick="showDetails('Settings')">⚙️ Settings</div>
+        </div>
+
+        <div class="mini-panel">
+          <h3>Quick Actions</h3>
+          <div class="actions">
+            <button onclick="increaseBalance()">➕ Add Revenue</button>
+            <button onclick="resetStats()">🔄 Reset</button>
+          </div>
+          <p class="stats">Revenue: $<span id="revenue">1000</span></p>
+        </div>
+      </section>
+
+      <section id="reports" class="page">
+        <h2 class="page-title">Reports</h2>
+        <p>✅ Reports section is active. Add your report table here.</p>
+
+        <div class="mini-panel">
+          <h3>Generate Report</h3>
+          <button onclick="generateReport()">📌 Generate</button>
+          <p id="reportMsg"></p>
+        </div>
+      </section>
+
+      <section id="users" class="page">
+        <h2 class="page-title">Users</h2>
+
+        <div class="mini-panel">
+          <h3>Add User</h3>
+          <input type="text" id="username" placeholder="Enter username" />
+          <button onclick="addUser()">➕ Add</button>
+          <p id="userMsg"></p>
+          <ul id="userList"></ul>
+        </div>
+      </section>
+
+      <section id="settings" class="page">
+        <h2 class="page-title">Settings</h2>
+
+        <div class="mini-panel">
+          <h3>Theme Settings</h3>
+          <p>Click theme button in top-right to switch Dark/Light Mode ✅</p>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <div id="popup" class="popup hidden">
+    <div class="popup-content">
+      <h3 id="popupTitle">Title</h3>
+      <p id="popupText">Details shown here...</p>
+      <button onclick="closePopup()">Close</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
